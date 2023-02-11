@@ -1,10 +1,14 @@
-<%@ page contentType="text/html; charset=euc-kr" %>
-
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+    
 <%@ page import="java.util.*"  %>
 <%@ page import="com.model2.mvc.service.product.vo.*" %>
 <%@ page import="com.model2.mvc.common.*" %>
 
 <%
+
+	System.out.println("여기는 return listProduct.jsp 내부");
+
 	HashMap<String,Object> map=(HashMap<String,Object>)request.getAttribute("map");
 	SearchVO searchVO=(SearchVO)request.getAttribute("searchVO");
 	
@@ -23,7 +27,12 @@
 		if(total%searchVO.getPageUnit() >0)
 			totalPage += 1;
 	}
+	System.out.println("menu값은?? = ");
+	System.out.println(request.getParameter("menu"));
+	String menu = request.getParameter("menu");
+	
 %>
+
 
 <html>
 <head>
@@ -32,9 +41,11 @@
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
 <script type="text/javascript">
+<!--
 function fncGetProductList(){
 	document.detailForm.submit();
 }
+-->
 </script>
 </head>
 
@@ -42,31 +53,36 @@ function fncGetProductList(){
 
 <div style="width:98%; margin-left:10px;">
 
-<form name="detailForm" action="/listProduct.do" method="post">
+<form name="detailForm" action="/listProduct.do?menu=manage" method="post">
 
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
 		<td width="15" height="37">
-			<img src="/images/ct_ttl_img01.gif" width="15" height="37">
+			<img src="/images/ct_ttl_img01.gif" width="15" height="37"/>
 		</td>
 		<td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left:10px;">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
+					<% if(menu.equals("manage")) {%>				
+					<td width="93%" class="ct_ttl01">상품 관리</td>
+					<%}else{ %>
 					<td width="93%" class="ct_ttl01">상품 목록조회</td>
+					<%} %>
 				</tr>
 			</table>
 		</td>
 		<td width="12" height="37">
-			<img src="/images/ct_ttl_img03.gif" width="12" height="37">
+			<img src="/images/ct_ttl_img03.gif" width="12" height="37"/>
 		</td>
 	</tr>
 </table>
+
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
 	<tr>
 	<%
 		if(searchVO.getSearchCondition() != null) {
-	%>
+	%>		
 		<td align="right">
 			<select name="searchCondition" class="ct_input_g" style="width:80px">
 		<%
@@ -126,6 +142,7 @@ function fncGetProductList(){
 	</tr>
 </table>
 
+
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
 	<tr>
 		<td colspan="11" >전체  <%= total%> 건수, 현재 <%=currentPage %> 페이지</td>
@@ -139,7 +156,7 @@ function fncGetProductList(){
 		<td class="ct_line02"></td>
 		<td class="ct_list_b" width="150">등록일</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b" width="150">현재상태</td>
+		<td class="ct_list_b" width="150">현재상태</td>	
 	</tr>
 	<tr>
 		<td colspan="11" bgcolor="808285" height="1"></td>
@@ -148,25 +165,29 @@ function fncGetProductList(){
 		int no=list.size();
 		for(int i=0; i<list.size(); i++) {
 			ProductVO vo = (ProductVO)list.get(i);
-	%>
+	%>		
 	<tr class="ct_list_pop">
 		<td align="center"><%=no--%></td>
 		<td></td>
 		<td align="left">
-			<a href="/getProduct.do?prodNo=<%=vo.getProdNo() %>"><%= vo.getProdName() %></a>
+	<% if(menu.equals("manage")) {%>
+		<a href="/updateProductView.do?prodNo=<%=vo.getProdNo() %>&menu=<%= menu %>"><%=vo.getProdName() %></a>		
+	<%}else{ %>		
+		<a href="/getProduct.do?prodNo=<%=vo.getProdNo() %>&menu=<%= menu %>"><%=vo.getProdName() %></a>			
 		</td>
+	<%} %>
 		<td></td>
 		<td align="left"><%= vo.getPrice() %></td>
 		<td></td>
 		<td align="left"><%= vo.getManuDate() %></td>
 		<td></td>
-		<td align="left"><%= vo.getProTranCode() %>
-		</td>		
+		<td align="left"><%= vo.getProTranCode() %>		
+		</td>	
 	</tr>
 	<tr>
 		<td colspan="11" bgcolor="D6D7D6" height="1"></td>
 	</tr>
-	<% } %>
+	<% } %>	
 </table>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
@@ -182,9 +203,10 @@ function fncGetProductList(){
     	</td>
 	</tr>
 </table>
-<!--  페이지 Navigator 끝 -->
-</form>
-</div>
 
+</form>
+
+</div>
 </body>
 </html>
+    

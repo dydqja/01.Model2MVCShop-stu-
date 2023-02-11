@@ -162,7 +162,7 @@ function fncGetProductList(){
 		<td align="center"><%=no--%></td>
 		<td></td>
 		<td align="left">
-			<a href="/updateProductView.do?prodNo=<%=vo.getProdNo() %>"><%=vo.getProdName() %></a>
+			<a href="/getProduct.do?prodNo=<%=vo.getProdNo() %>&menu=<%=request.getParameter("menu") %>"><%=vo.getProdName() %></a>
 		</td>
 		<td></td>
 		<td align="left"><%= vo.getPrice() %></td>

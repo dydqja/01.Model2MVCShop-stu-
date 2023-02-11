@@ -8,7 +8,9 @@
 
 	ProductVO productVO=(ProductVO)request.getAttribute("productVO");
 	
-	System.out.println("updateProductView.jsp 내부값" + productVO);
+	System.out.println("menu값?=================");
+	System.out.println(request.getParameter("menu"));	
+	
 %>
 
 <html>
@@ -60,6 +62,7 @@ function fncAddProduct(){
 <form name="detailForm"  method="post" >
 
 <input type="hidden" name="prodNo" value="<%=productVO.getProdNo() %>" >
+<input type="hidden" name="menu" value="<%=request.getParameter("menu") %>" >
 
 <table width="100%" height="37" border="0" cellpadding="0" cellspacing="0">
 	<tr>
