@@ -18,11 +18,13 @@ public class UpdateProductAction extends Action {
 	public String execute(	HttpServletRequest request,
 												HttpServletResponse response) throws Exception {
 		
-		System.out.println("여기는 UpdateProductAction 내부");
+		System.out.println("여기는 UpdateProductAction 내부");		
+		System.out.println("menu값?=================");
+		System.out.println(request.getParameter("menu"));
 		
 		int prodNo=Integer.parseInt(request.getParameter("prodNo"));
 		
-		System.out.println("request.getParameter로 받은 prodNo 값은? ="+prodNo);
+		String manu = request.getParameter("menu");
 		
 		ProductVO productVO=new ProductVO();
 		productVO.setProdNo(prodNo);
@@ -40,22 +42,13 @@ public class UpdateProductAction extends Action {
 		
 		System.out.println("========여기까진 문제없음========");
 		
-		//HttpSession session=request.getSession();
-		
-		//int sessionId=((ProductVO)session.getAttribute("product")).getProdNo();
 		
 		
-		//System.out.println(sessionId);
+		//return "redirect:/getProduct.do?prodNo=&munu="+prodNo+manu; // 다시. 메뉴값을 같이 getProductAction으로 넘기고싶음.
+																	// name,value name,value
+		return "forword:/getProduct.do?prodNo="+prodNo+"&menu="+manu;
 		
 		
-
-		//request.setAttribute("product", productVO); ###
-//		if(sessionId==prodNo){
-//			session.setAttribute("product", productVO);
-//		}
-		
-		return "redirect:/getProduct.do?prodNo="+prodNo; // 다시. getProductAction? jsp?? // 여기로 가서 등록일자 가져오기?
-		//return "forward:/product/getProduct.jsp"; // <== jsp로 바로가니까 등록일자 정보를 못가져옴.
 	}
 
 	

@@ -15,7 +15,10 @@ public class UpdateProductViewAction extends Action{
 	public String execute(	HttpServletRequest request,
 												HttpServletResponse response) throws Exception {
 		
-		System.out.println("여기는 UpdateProductViewAction 내부");
+		System.out.println("여기는 UpdateProductViewAction 내부");		
+		System.out.println("menu값은?? = ");
+		System.out.println(request.getParameter("menu"));
+		
 		
 		int prodNo = Integer.parseInt(request.getParameter("prodNo"));
 		

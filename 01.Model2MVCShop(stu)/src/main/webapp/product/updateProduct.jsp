@@ -4,7 +4,10 @@
 <%@ page import="com.model2.mvc.service.product.vo.*" %>
 
 <%
+	System.out.println("여기는 updateProduct.jsp 내부");
 	ProductVO vo=(ProductVO)request.getAttribute("vo");
+	String menu = request.getParameter("menu");
+	
 %>
 
 <html>
@@ -117,14 +120,34 @@
 		<td width="53%"></td>
 		<td align="right">
 
-		<table border="0" cellspacing="0" cellpadding="0">
-			<tr>
+		<table border="0" cellspacing="0" cellpadding="0">			
+								
+				<%if(menu.equals("manage")) { %>
+				<tr>
 				<td width="17" height="23">
 					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 				</td>
-				<td background="/images/ct_btnbg02.gif" class="ct_btn01"	style="padding-top: 3px;">
+				<td background="/images/ct_btnbg02.gif" class="ct_btn01"	style="padding-top: 3px;">				
 					<a href="/listProduct.do?menu=manage">확인</a>
+				<%}else{%>
+				<tr>
+				<td width="17" height="23">
+					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 				</td>
+				<td background="/images/ct_btnbg02.gif" class="ct_btn01"	style="padding-top: 3px;">				
+					<a href="/~~~~~~~~.do?menu=manage">구매</a>
+				</td>
+					
+				<tr>
+				<td width="17" height="23">
+					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
+				</td>	
+				<td background="/images/ct_btnbg02.gif" class="ct_btn01"	style="padding-top: 3px;">				
+					<a href="javascript:history.go(-1)">이전</a>
+				</td>
+				<%} %>	
+					
+
 				<td width="14" height="23">
 					<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
 				</td>
