@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.http.HttpRequest;
+
 import com.model2.mvc.common.SearchVO;
 import com.model2.mvc.common.util.DBUtil;
 import com.model2.mvc.service.product.vo.ProductVO;
@@ -114,13 +116,14 @@ public class ProductDAO {
 				vo.setFileName(rs.getString("IMAGE_FILE"));
 				vo.setRegDate(rs.getDate("REG_DATE"));
 				
-				list.add(vo);
+				list.add(vo);				
+				
 				if (!rs.next())
 					break;
 			}
 		}
-		System.out.println("list.size() : "+ list.size());
 		map.put("list", list);
+		System.out.println("list.size() : "+ list.size());				
 		System.out.println("map().size() : "+ map.size());
 
 		con.close();

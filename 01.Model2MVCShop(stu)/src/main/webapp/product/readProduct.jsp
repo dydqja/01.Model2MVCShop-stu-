@@ -105,7 +105,7 @@
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td height="26">
-						<img src="/images/uploadFiles/../../images/empty.GIF"/>
+						<img src="C:\workspace\01.Model2MVCShop(stu)\src\main\webapp\images\uploadFiles"/>
 					</td>
 					<td class="ct_write01"><%= vo.getFileName() %></td>
 				</tr>

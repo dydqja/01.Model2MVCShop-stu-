@@ -196,7 +196,7 @@ function fncGetProductList(){
 		<%
 			for(int i=1;i<=totalPage;i++){
 		%>
-			<a href="/listProduct.do?page=<%=i%>"><%=i %></a>
+			<a href="/listProduct.do?page=<%=i%>&menu=<%=menu%>"><%=i %></a>
 		<%
 			}
 		%>	
